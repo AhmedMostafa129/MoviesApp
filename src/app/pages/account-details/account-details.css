@@ -1,0 +1,236 @@
+.account-section {
+  padding: 80px 0;
+  background: transparent;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-wrapper {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* --- Left Card: Profile Summary --- */
+.profile-card {
+  flex: 0 0 300px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+}
+
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #e50914, #b20710);
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+}
+
+.profile-card h3 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.profile-card .email-text {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.bio-preview p {
+  color: #ccc;
+  font-style: italic;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 12px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: #e50914;
+  color: white;
+}
+
+/* --- Right Card: Edit Form --- */
+.details-card {
+  flex: 1;
+  min-width: 350px;
+  max-width: 800px;
+  background: #1f1f1f;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+}
+
+.card-header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+}
+
+.card-header h2 {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.card-header p {
+  color: #888;
+  font-size: 14px;
+}
+
+/* --- Form Elements --- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.input-with-icon,
+.password-field {
+  position: relative;
+}
+
+.input-with-icon i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.input-with-icon i.align-top {
+  top: 20px;
+}
+
+.input-with-icon input,
+.input-with-icon textarea,
+.password-field input {
+  width: 100%;
+  background: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 12px 15px 12px 45px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.password-field input {
+  padding-left: 15px;
+  /* No left icon for password yet, mostly right icon */
+  padding-right: 45px;
+}
+
+.details-card textarea {
+  resize: vertical;
+}
+
+.input-with-icon input:focus,
+.input-with-icon textarea:focus,
+.password-field input:focus {
+  border-color: var(--accent-red);
+  outline: none;
+  background: var(--glass-bg);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.1);
+}
+
+.password-field i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+.readonly {
+  background: #252525 !important;
+  color: #777 !important;
+  cursor: not-allowed;
+}
+
+.divider {
+  border-color: #333;
+  margin: 30px 0;
+}
+
+.security-title {
+  color: #e50914;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.btn-save {
+  background: #e50914;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-save:hover {
+  background: #f40612;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .account-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .profile-card {
+    flex: auto;
+  }
+}

@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg premium-navbar sticky-top">
+  <div class="container position-relative">
+
+    <!-- Left: Back Button & Logo -->
+    <div class="d-flex align-items-center gap-3">
+      <div class="back-btn-wrapper" *ngIf="shouldShowBackBtn()">
+        <i class="fa-solid fa-circle-arrow-left text-danger" (click)="goToHome()"
+          style="font-size: 1.8rem; cursor: pointer;" title="Back to List"></i>
+      </div>
+      <a class="navbar-brand d-none d-md-block" routerLink="/home">
+        Movie<span class="text-danger">App</span>
+      </a>
+    </div>
+
+    <!-- Center: Navigation Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item">
+          <a class="nav-link custom-link" routerLink="/home" routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-link" (click)="goToWatchlist()" style="cursor: pointer;">Watchlist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-link" routerLink="/About" routerLinkActive="active-link">About Us</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right: Auth / Theme / Profile -->
+    <div class="d-flex align-items-center gap-3 auth-section ms-auto">
+      <!-- Theme Toggle Button -->
+      <div class="theme-toggle-btn" (click)="toggleTheme()"
+        [title]="isDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        <i class="fa-solid" [ngClass]="isDarkMode() ? 'fa-sun' : 'fa-moon'"></i>
+      </div>
+
+      <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
+        <button class="btn btn-outline-light btn-sm px-3" routerLink="/login">Login</button>
+        <button class="btn btn-danger btn-sm px-3" routerLink="/register">Sign Up</button>
+      </ng-container>
+
+      <ng-template #loggedInTemplate>
+        <div class="dropdown profile-dropdown">
+          <div class="profile-trigger d-flex align-items-center gap-2" data-bs-toggle="dropdown" aria-expanded="false"
+            style="cursor: pointer;">
+            <div class="nav-avatar">
+              <img *ngIf="user()?.profileImage; else initials" [src]="user()?.profileImage" alt="Profile"
+                class="avatar-img">
+              <ng-template #initials>
+                <div class="avatar-initials">{{ user()?.name?.charAt(0)?.toUpperCase() }}</div>
+              </ng-template>
+            </div>
+            <span class="d-none d-md-block text-white small">{{ user()?.name }}</span>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg border-secondary">
+            <li><a class="dropdown-item py-2" routerLink="/account-details"><i class="fa-solid fa-circle-user me-2"></i>
+                Profile</a></li>
+            <li><a class="dropdown-item py-2" (click)="goToWatchlist()" style="cursor: pointer;"><i
+                  class="fa-solid fa-heart me-2 text-danger"></i> Watchlist</a></li>
+            <li>
+              <hr class="dropdown-divider bg-secondary">
+            </li>
+            <li><a class="dropdown-item py-2 text-danger" (click)="logout()"><i
+                  class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+          </ul>
+        </div>
+      </ng-template>
+
+      <!-- Mobile Toggler -->
+      <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="fa-solid fa-bars text-white fs-1"></span>
+      </button>
+    </div>
+  </div>
+</nav>

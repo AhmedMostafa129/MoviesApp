@@ -1,0 +1,50 @@
+<section class="watchlist-section">
+  <div class="container container-content">
+
+    <div class="watchlist-header text-center mb-5">
+      <h1 class="display-5 fw-bold text-white"><i class="fa-solid fa-heart text-danger me-2"></i>My <span
+          class="text-danger">Watchlist</span></h1>
+      <p class="text-muted">Your curated collection of must-watch cinema.</p>
+    </div>
+
+    <div class="row justify-content-center g-4" *ngIf="movies.length > 0; else emptyState">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3" *ngFor="let movie of movies">
+        <div class="movie-card glass-card h-100">
+
+          <!-- Heart Button overlay -->
+          <div class="heart-overlay" (click)="removeMovie(movie)" title="Remove from Watchlist">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+
+          <div class="card-img-wrapper" (click)="goToDetails(movie.id)">
+            <img [src]="movie.image" class="movie-img" alt="Movie Image">
+          </div>
+
+          <div class="movie-info" (click)="goToDetails(movie.id)">
+            <h5 class="movie-title">{{movie.name}}</h5>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="movie-rating text-warning"><i class="fa-solid fa-star me-1"></i> {{movie.rate}}</span>
+              <span class="movie-status text-success small fw-bold">{{movie.availablelty}}</span>
+            </div>
+            <button class="btn btn-danger btn-sm w-100 mt-3 py-2 rounded-pill shadow-sm">
+              <i class="fa-solid fa-play me-1"></i> Watch Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty-state-card glass-card text-center py-5 px-4 mx-auto" style="max-width: 500px;">
+        <div class="mb-4">
+          <i class="fa-solid fa-film text-secondary display-1 opacity-25"></i>
+        </div>
+        <h3 class="text-white mb-3">Your list is currently empty</h3>
+        <p class="text-muted mb-4">Start exploring our vast library and add your favorite movies here to watch them
+          later.</p>
+        <a routerLink="/home" class="btn btn-danger btn-lg px-5 rounded-pill shadow">Browse Movies</a>
+      </div>
+    </ng-template>
+
+  </div>
+</section>

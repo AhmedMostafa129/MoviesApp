@@ -1,0 +1,98 @@
+<section class="register-section">
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="register-card premium-glass">
+
+      <div class="register-header text-center mb-4">
+        <h1 class="display-6 fw-bold text-white mb-2">Create Account</h1>
+        <p>Join <span class="text-danger fw-bold">MovieHub</span> and start exploring</p>
+      </div>
+
+      <form (ngSubmit)="onRegister()" #registerForm="ngForm" class="register-form">
+
+        <div class="row">
+          <!-- Name -->
+          <div class="col-md-6 mb-3">
+            <div class="input-group-custom">
+              <label class="small text-uppercase tracking-wider mb-2 d-block">Full Name</label>
+              <div class="field-wrapper">
+                <i class="fa-solid fa-user icon"></i>
+                <input type="text" [(ngModel)]="name" name="name" required placeholder="John Doe">
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <div class="input-group-custom">
+              <label class="small text-uppercase tracking-wider text-muted mb-2 d-block">Email Address</label>
+              <div class="field-wrapper">
+                <i class="fa-solid fa-envelope icon"></i>
+                <input type="email" [(ngModel)]="email" name="email" required placeholder="john@example.com">
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone (New) -->
+          <div class="col-md-6 mb-3">
+            <div class="input-group-custom">
+              <label class="small text-uppercase tracking-wider text-muted mb-2 d-block">Phone Number</label>
+              <div class="field-wrapper">
+                <i class="fa-solid fa-phone icon"></i>
+                <input type="tel" [(ngModel)]="phone" name="phone" placeholder="+123 456 789">
+              </div>
+            </div>
+          </div>
+
+          <!-- Location (New) -->
+          <div class="col-md-6 mb-3">
+            <div class="input-group-custom">
+              <label class="small text-uppercase tracking-wider text-muted mb-2 d-block">Location</label>
+              <div class="field-wrapper">
+                <i class="fa-solid fa-location-dot icon"></i>
+                <input type="text" [(ngModel)]="address" name="address" placeholder="New York, USA">
+              </div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="col-md-6 mb-3">
+            <div class="input-group-custom">
+              <label class="small text-uppercase tracking-wider text-muted mb-2 d-block">Password</label>
+              <div class="field-wrapper">
+                <i class="fa-solid fa-lock icon"></i>
+                <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required
+                  placeholder="••••••••">
+                <i class="fa-solid password-toggle" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                  (click)="togglePassword()"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="col-md-6 mb-3">
+            <div class="input-group-custom">
+              <label class="small text-uppercase tracking-wider text-muted mb-2 d-block">Confirm Password</label>
+              <div class="field-wrapper">
+                <i class="fa-solid fa-shield-halved icon"></i>
+                <input [type]="showConfirmPassword ? 'text' : 'password'" [(ngModel)]="confirmPassword"
+                  name="confirmPassword" required placeholder="••••••••">
+                <i class="fa-solid password-toggle" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+                  (click)="toggleConfirmPassword()"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100 py-3 mt-4 fw-bold rounded-3 shadow-lg btn-register-main">
+          START YOUR JOURNEY
+        </button>
+      </form>
+
+      <div class="footer-links text-center mt-4">
+        <p class="text-muted small">Already have an account? <a routerLink="/login"
+            class="text-danger fw-bold text-decoration-none">Sign In</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<!-- child.component.html -->
+<div class="row justify-content-center g-4" id="moviesCards">
+  @for(item of selectmov; track item.id) {
+  <div class="col-6 col-md-4 col-lg-3">
+    <div class="movie-card" (click)="goToDetails(item.id)">
+
+      <!-- ❤️ زر القلب -->
+      <i id="heart" class="bi heart" [ngClass]="isInWishlist(item.id) ? 'bi-heart-fill text-danger' : 'bi-heart'"
+        (click)="toggleWishlist(item); $event.stopPropagation()"></i>
+
+      <img [src]="item.image" class="movie-img" alt="Movie Image">
+
+      <div class="movie-info">
+        <h5 class="movie-title">{{ item.name }}</h5>
+        <p class="movie-type">{{ getCategoryName(item.categoryId) }}</p>
+        <p class="movie-rating">⭐ {{ item.rate }} / 10</p>
+        <p class="movie-available text-success">{{ item.availablelty }}</p>
+        <button (click)="goToDetails(item.id); $event.stopPropagation()" class="btn btn-primary mt-2"
+          style="width: 100%;">
+          Watch Now
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>

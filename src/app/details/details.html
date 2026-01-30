@@ -1,0 +1,106 @@
+<div class="mv-details-page">
+  <div class="container" *ngIf="movie">
+    <div class="movie-container">
+      <!-- Left Side -->
+      <div class="movie-image text-center">
+        <img [src]="movie.image" alt="{{ movie.name }}">
+      </div>
+
+      <!-- Right Side -->
+      <div class="movie-details">
+        <h2 class="movie-title">{{ movie.name }}</h2>
+        <hr class="my-4" />
+        <p><strong>Category:</strong> {{ getCategoryName(movie.categoryId) }}</p>
+        <p class="movie-rating">⭐ {{ movie.rate }} / 10</p>
+        <h5 class="text-secondary mb-2">Introduction</h5>
+        <p class="movie-description">{{ movie.description }}</p>
+
+        <h5 class="text-secondary mb-2 mt-4">Story</h5>
+        <p class="movie-description">{{ movie.story }}</p>
+
+        <div *ngIf="movie.cast && movie.cast.length > 0" class="mt-4">
+          <h5 class="mb-3 text-warning">Cast & Characters</h5>
+          <div class="row g-3">
+            <div class="col-md-6" *ngFor="let member of movie.cast">
+              <div class="d-flex align-items-center bg-dark p-2 rounded border border-secondary">
+                <i class="fa-solid fa-user-circle fs-3 me-3 text-primary"></i>
+                <div>
+                  <div class="fw-bold text-white">{{ member.actor }}</div>
+                  <div class="text-muted small">as <span class="text-info">{{ member.role }}</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <!-- Trailer Section -->
+    <div class="mt-5" *ngIf="trailerUrl; else noTrailer">
+      <h3><i class="fa-solid fa-play-circle text-danger"></i> Official Trailer</h3>
+      <hr class="my-3" width="200px" />
+      <div class="ratio ratio-16x9"
+        style="border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+        <iframe [src]="trailerUrl" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="text-center mt-3">
+        <button (click)="openInYoutube()" class="btn btn-danger btn-lg"
+          style="border-radius: 30px; padding: 10px 30px;">
+          <i class="fa-brands fa-youtube"></i> Go to YouTube
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noTrailer>
+      <div class="mt-5 text-center p-5 bg-dark rounded border border-secondary">
+        <i class="fa-solid fa-video-slash fs-1 text-muted mb-3"></i>
+        <h3>Trailer Not Available</h3>
+        <p class="text-muted">We couldn't find an official trailer for this movie at the moment.</p>
+        <a [href]="'https://www.youtube.com/results?search_query=' + movie.name + ' trailer'" target="_blank"
+          class="btn btn-outline-danger mt-3" style="border-radius: 30px;">
+          <i class="fa-brands fa-youtube"></i> Search for it on YouTube
+        </a>
+      </div>
+    </ng-template>
+
+    <hr class="my-5" />
+
+    <!-- Recommended Movies Section -->
+    <div class="mt-5">
+      <h3> Recommended Movies</h3>
+      <hr class="my-3" style="width: 300px" />
+
+      <div *ngIf="recommendedMovies.length > 0; else noRecs" class="row justify-content-center g-4" id="moviesCards">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let rec of recommendedMovies">
+          <div class="movie-card position-relative">
+            <i class="fa-solid fa-heart heart" id="heart"></i>
+            <img [src]="rec.image" class="movie-img w-100" alt="{{ rec.name }}">
+
+            <div class="movie-info p-2">
+              <h5 class="movie-title">{{ rec.name }}</h5>
+              <p class="movie-rating">⭐ {{ rec.rate }} / 10</p>
+              <p class="movie-available text-success">{{ rec.availablelty }}</p>
+              <button (click)="goToMovie(rec.id)" class="btn btn-primary mt-2 w-100">
+                Watch Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noRecs>
+        <p>No recommendations available.</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="!movie" class="text-center mt-5">
+    <h3>Loading movie details...</h3>
+  </div>
+</div>

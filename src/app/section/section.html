@@ -1,0 +1,44 @@
+<section class="movie-section">
+
+  <!-- Hero Section -->
+  <div class="hero-section text-center">
+    <div class="container">
+      <h1 class="hero-title">Unlimited Movies, TV Shows, and More.</h1>
+      <p class="hero-subtitle">Watch anywhere. Cancel anytime.</p>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="input-wrapper">
+          <input type="text" class="search-input" [(ngModel)]="searchTerm" placeholder="What do you want to watch?" />
+          <button class="btn-search">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container main-content">
+
+    <!-- Category Filters -->
+    <div class="category-header">
+      <h2>Explore Categories</h2>
+    </div>
+
+    <div class="category-container">
+      <button class="category-btn" [class.active]="selectedCategoryId === 0" (click)="selectedCategoryId = 0">
+        All
+      </button>
+
+      <button *ngFor="let item of category" class="category-btn" [class.active]="selectedCategoryId === item.id"
+        (click)="selectedCategoryId = item.id">
+        {{ item.name }}
+      </button>
+    </div>
+
+    <div class="movies-grid-wrapper">
+      <app-filmes [selectedfilmes]="selectedCategoryId" [searchText]="searchTerm"></app-filmes>
+    </div>
+
+  </div>
+</section>
